@@ -19,13 +19,21 @@ Install with the package installer of choice:
 ### vim-plug
 
 ```
-Plug 'Mohammed-Taher/AdvancedNewFile.nvim'
+Plug 'wbartz/AdvancedNewFile.nvim'
 ```
 
 ### Packer
 
 ```
-use 'Mohammed-Taher/AdvancedNewFile.nvim'
+use 'wbartz/AdvancedNewFile.nvim'
+```
+
+### Lazy
+
+```
+return {
+  'wbartz/AdvancedNewFile.nvim'
+}
 ```
 
 ## Usage
@@ -33,7 +41,13 @@ use 'Mohammed-Taher/AdvancedNewFile.nvim'
 You can use `AdvancedNewFile` command to create new files and folders in neovim. You may want to map this to key bindings for easy access.
 
 ```lua
-vim.api.nvim_set_keymap("n", "<C-n>", "<cmd>AdvancedNewFile<CR>", noremap=true)
+keymap("n", "<C-n>", "<cmd>lua require('advanced_new_file').run()<CR>", silent)
+```
+
+Get current file dir
+
+```lua
+keymap("n", "<C-y>", "<cmd>lua require('advanced_new_file').run(true)<CR>", silent)
 ```
 
 Enter the filename in the prompt and it will be created in the current workin directory.
@@ -43,8 +57,3 @@ if the name enterd ends with a path separator, a folder will be created.
 You can also create files inside new or present folders.
 
 If installed, this plugn will work with [nvim-notify](https://github.com/rcarriga/nvim-notify).
-
-## TODO
-
-- Add some configuration.
-- Test on Windows.

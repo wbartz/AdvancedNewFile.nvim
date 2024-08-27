@@ -19,8 +19,16 @@ local set_prompt = function()
 	return M.prompt
 end
 
-function M.run()
-	vim.ui.input({ prompt = set_prompt(), completion = "file" }, function(new_file_path)
+function M.run(with_current_dir)
+	-- Get current file path
+	local current_file_path
+	if current_dir then
+		current_file_path = vim.fn.system('pwd')
+	else
+		current_file_path = ''
+	end
+
+	vim.ui.input({ prompt = set_prompt(), completion = "file", default = current_file_path }, function(new_file_path)
 		-- Check if the input was empty
 		if new_file_path == nil then
 			return
