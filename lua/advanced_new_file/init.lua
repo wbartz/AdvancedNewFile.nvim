@@ -22,7 +22,7 @@ end
 function M.run(with_current_dir)
 	-- Get current file path
 	local current_file_path
-	if current_dir then
+	if with_current_dir then
 		current_file_path = vim.fn.system('pwd')
 	else
 		current_file_path = ''
