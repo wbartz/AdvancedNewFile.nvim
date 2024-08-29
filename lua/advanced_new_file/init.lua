@@ -21,12 +21,13 @@ end
 
 function M.run(with_current_dir)
 	-- Get current file path
-	local current_file_path
-	if with_current_dir then
-		current_file_path = vim.fn.system('pwd')
-	else
-		current_file_path = ''
-	end
+  local current_file_path
+
+  if with_current_dir then
+    current_file_path = vim.fn.expand('%:p:h') .. '/'
+  else
+    current_file_path = ''
+  end
 
 	vim.ui.input({ prompt = set_prompt(), completion = "file", default = current_file_path }, function(new_file_path)
 		-- Check if the input was empty
